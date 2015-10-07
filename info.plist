@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>contactEmailRot13</key>
+	<string>vladhr@tznvy.pbz</string>
+	<key>contactName</key>
+	<string>Andrew Williams</string>
+	<key>description</key>
+	<string>New shiny bundle for parsing IRC logs in EnergyMech format (as those from ZNC).</string>
+	<key>name</key>
+	<string>IRC Logs</string>
+	<key>uuid</key>
+	<string>94EED599-EB8E-46A7-90A4-B87CE5F89243</string>
+</dict>
+</plist>

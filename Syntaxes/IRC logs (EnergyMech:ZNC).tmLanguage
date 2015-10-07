@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>comment</key>
+	<string>
+		TODO
+		 1. Fix lazy matches for text formatting/mIRC codes
+			(but really, who cares? :P)
+	</string>
+	<key>fileTypes</key>
+	<array>
+		<string>log</string>
+	</array>
+	<key>name</key>
+	<string>IRC EnergyMech (ZNC)</string>
+	<key>patterns</key>
+	<array>
+		<dict>
+			<key>comment</key>
+			<string>Timestamps, all lines</string>
+			<key>match</key>
+			<string>^\[\d+:\d+:\d+\]</string>
+			<key>name</key>
+			<string>comment.block.timestamp</string>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>(&lt;)([^&gt;]+)(&gt;)</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>comment</key>
+					<string>Mark left chevron/less-than (&lt;)</string>
+					<key>name</key>
+					<string>keyword.other.chevron.left</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>comment</key>
+					<string>Mark the nick of the person talking</string>
+					<key>name</key>
+					<string>string.unquoted.other.who</string>
+				</dict>
+				<key>3</key>
+				<dict>
+					<key>comment</key>
+					<string>Mark right chevron/greater-than (&gt;)</string>
+					<key>name</key>
+					<string>keyword.other.chevron.right</string>
+				</dict>
+			</dict>
+			<key>comment</key>
+			<string>Normal chat lines</string>
+			<key>contentName</key>
+			<string>meta.message.irclog.energymech</string>
+			<key>end</key>
+			<string>$</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>comment</key>
+					<string>Code for italic text--(mIRC-style)</string>
+					<key>match</key>
+					<string>\([^(\|\|\|\|\|\\d?\d|$)]+)(\|\|\|\|\|\\d?\d|$)</string>
+					<key>name</key>
+					<string>markup.bold.irc_logs</string>
+				</dict>
+				<dict>
+					<key>comment</key>
+					<string>Code for italic text--(mIRC-style)</string>
+					<key>match</key>
+					<string>\([^(\|\|\|\|\|\\d?\d|$)]+)(\|\|\|\|\|\\d?\d|$)</string>
+					<key>name</key>
+					<string>markup.italic.irc_logs</string>
+				</dict>
+				<dict>
+					<key>comment</key>
+					<string>Code for underlined text--(mIRC-style)</string>
+					<key>match</key>
+					<string>\([^(\|\|\|\|\|\\d?\d|$)]+)(\|\|\|\|\|\\d?\d|$)</string>
+					<key>name</key>
+					<string>markup.underline.irc_logs</string>
+				</dict>
+				<dict>
+					<key>comment</key>
+					<string>Code for swapping background and foreground colors ("reverse video")--(mIRC-style)</string>
+					<key>match</key>
+					<string>\([^(\|\|\|\|\|\\d?\d|$)]+)(\|\|\|\|\|\\d?\d|$)</string>
+					<key>name</key>
+					<string>markup.other.reverse.irc_logs</string>
+				</dict>
+				<dict>
+					<key>comment</key>
+					<string>Reset all formatting--(mIRC-style)</string>
+					<key>match</key>
+					<string>\</string>
+					<key>name</key>
+					<string>markup.other.resetformat.irc_logs</string>
+				</dict>
+				<dict>
+					<key>comment</key>
+					<string>Color codes--(mIRC-style)</string>
+					<key>match</key>
+					<string>\\d?\d</string>
+					<key>name</key>
+					<string>support.function.colors.mirc</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>(\*) (\S+)</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>comment</key>
+					<string>Mark the action signifier: *</string>
+					<key>name</key>
+					<string>keyword.other.signifier.action</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>comment</key>
+					<string>Mark the nick of the person doing the action</string>
+					<key>name</key>
+					<string>string.unquoted.other.who</string>
+				</dict>
+			</dict>
+			<key>comment</key>
+			<string>Action lines</string>
+			<key>contentName</key>
+			<string>meta.action.irclog.energymech</string>
+			<key>end</key>
+			<string>^</string>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>((-)(.*)(-))? (\*{3})</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>comment</key>
+					<string>Whole server name</string>
+					<key>name</key>
+					<string>meta.servermsg.who</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>comment</key>
+					<string>Mark left -</string>
+					<key>name</key>
+					<string>keyword.other.chevron.left</string>
+				</dict>
+				<key>3</key>
+				<dict>
+					<key>comment</key>
+					<string>Mark server</string>
+					<key>name</key>
+					<string>string.unquoted.other.who</string>
+				</dict>
+				<key>4</key>
+				<dict>
+					<key>comment</key>
+					<string>Mark right -</string>
+					<key>name</key>
+					<string>keyword.other.chevron.left</string>
+				</dict>
+				<key>5</key>
+				<dict>
+					<key>comment</key>
+					<string>Mark the event signifier: ***</string>
+					<key>name</key>
+					<string>keyword.other.signifier.event</string>
+				</dict>
+			</dict>
+			<key>comment</key>
+			<string>Event lines</string>
+			<key>contentName</key>
+			<string>meta.event.irclog.energymech</string>
+			<key>end</key>
+			<string>^</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>comment</key>
+					<string>Mark event type</string>
+					<key>match</key>
+					<string>\b(Joins|Quits|Parts|is now known as|sets mode)\b</string>
+					<key>name</key>
+					<string>keyword.control.event</string>
+				</dict>
+				<dict>
+					<key>begin</key>
+					<string>(changes topic to ')</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>comment</key>
+							<string>mark changes to topic, start</string>
+							<key>name</key>
+							<string>keyword.control.event.topicchange</string>
+						</dict>
+					</dict>
+					<key>comment</key>
+					<string>Mark the new topic contents</string>
+					<key>end</key>
+					<string>(\')$</string>
+					<key>endCaptures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>comment</key>
+							<string>mark changes to topic, end</string>
+							<key>name</key>
+							<string>keyword.control.event.topicchange</string>
+						</dict>
+					</dict>
+					<key>name</key>
+					<string>string.quoted.single.topic</string>
+				</dict>
+				<dict>
+					<key>comment</key>
+					<string>Hostmasks</string>
+					<key>match</key>
+					<string>\(.*?\@.*?\)</string>
+					<key>name</key>
+					<string>comment.block.event.hostmask</string>
+				</dict>
+				<dict>
+					<key>comment</key>
+					<string>Common quit messages/error are de-emphasized.</string>
+					<key>match</key>
+					<string>\(((\b(Max SendQ exceeded|Fail Buffer|Write error(.*)|Read error(.*)|Excess Flood|Client Quit|Remote host closed the connection|Quit|Read error: Connection timed out|Ping timeout: \d+ seconds|Changing host|Read error: Connection reset by peer|Connection closed|Client exited|Broken pipe|Disconnected by services)\b)|()|\*\.net \*\.split)\)</string>
+					<key>name</key>
+					<string>comment.block.event.common</string>
+				</dict>
+				<dict>
+					<key>comment</key>
+					<string>Any custom/non-error quit message is emphasized</string>
+					<key>match</key>
+					<string>\bQuit\b</string>
+					<key>name</key>
+					<string>constant.language.event.quit</string>
+				</dict>
+				<dict>
+					<key>comment</key>
+					<string>Highlight kicks/bans</string>
+					<key>match</key>
+					<string>((\b(?i)(([kgz]|gz)-?lined?|ban(ned)?|kick(ed)?|shun(ned)?)\b)|\+b)</string>
+					<key>name</key>
+					<string>invalid.illegal.event</string>
+				</dict>
+			</array>
+		</dict>
+	</array>
+	<key>scopeName</key>
+	<string>text.plain.energymech</string>
+	<key>uuid</key>
+	<string>DABAF161-2F0E-43BD-80C9-C5CE0557BC32</string>
+</dict>
+</plist>
