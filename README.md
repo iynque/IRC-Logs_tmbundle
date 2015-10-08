@@ -2,7 +2,7 @@
 
 [TextMate](http://macromates.com/) bundle for viewing [energymech](http://www.energymech.net) format IRC logs (as produced by [ZNC](http://wiki.znc.in/Log)).
 
-More formats (moay or may not be) coming soon...
+More formats (may or may not be) coming soon...
 
 ## Credits and license
 
