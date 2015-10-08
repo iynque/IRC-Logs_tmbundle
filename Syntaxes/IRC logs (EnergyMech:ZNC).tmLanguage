@@ -60,52 +60,28 @@
 			<key>patterns</key>
 			<array>
 				<dict>
-					<key>comment</key>
-					<string>Code for italic text--(mIRC-style)</string>
-					<key>match</key>
-					<string>\([^(\|\|\|\|\|\\d?\d|$)]+)(\|\|\|\|\|\\d?\d|$)</string>
-					<key>name</key>
-					<string>markup.bold.irc_logs</string>
+					<key>include</key>
+					<string>#mirc-bold</string>
 				</dict>
 				<dict>
-					<key>comment</key>
-					<string>Code for italic text--(mIRC-style)</string>
-					<key>match</key>
-					<string>\([^(\|\|\|\|\|\\d?\d|$)]+)(\|\|\|\|\|\\d?\d|$)</string>
-					<key>name</key>
-					<string>markup.italic.irc_logs</string>
+					<key>include</key>
+					<string>#mirc-italic</string>
 				</dict>
 				<dict>
-					<key>comment</key>
-					<string>Code for underlined text--(mIRC-style)</string>
-					<key>match</key>
-					<string>\([^(\|\|\|\|\|\\d?\d|$)]+)(\|\|\|\|\|\\d?\d|$)</string>
-					<key>name</key>
-					<string>markup.underline.irc_logs</string>
+					<key>include</key>
+					<string>#mirc-underline</string>
 				</dict>
 				<dict>
-					<key>comment</key>
-					<string>Code for swapping background and foreground colors ("reverse video")--(mIRC-style)</string>
-					<key>match</key>
-					<string>\([^(\|\|\|\|\|\\d?\d|$)]+)(\|\|\|\|\|\\d?\d|$)</string>
-					<key>name</key>
-					<string>markup.other.reverse.irc_logs</string>
+					<key>include</key>
+					<string>#mirc-reverse</string>
 				</dict>
 				<dict>
-					<key>comment</key>
-					<string>Reset all formatting--(mIRC-style)</string>
-					<key>match</key>
-					<string>\</string>
-					<key>name</key>
-					<string>markup.other.resetformat.irc_logs</string>
+					<key>include</key>
+					<string>#mirc-reset</string>
 				</dict>
 				<dict>
-					<key>comment</key>
-					<string>Color codes--(mIRC-style)</string>
-					<key>match</key>
-					<string>\\d?\d</string>
-					<key>name</key>
-					<string>support.function.colors.mirc</string>
+					<key>include</key>
+					<string>#mirc-colors</string>
 				</dict>
 			</array>
 		</dict>
@@ -135,6 +111,33 @@
 			<string>meta.action.irclog.energymech</string>
 			<key>end</key>
 			<string>^</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#mirc-bold</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#mirc-italic</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#mirc-underline</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#mirc-reverse</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#mirc-reset</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#mirc-colors</string>
+				</dict>
+			</array>
 		</dict>
 		<dict>
 			<key>begin</key>
@@ -240,24 +243,157 @@
 					<string>comment.block.event.common</string>
 				</dict>
 				<dict>
+					<key>begin</key>
+					<string>(\(Quit\: )</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>comment</key>
+							<string>mark quit message, start</string>
+							<key>name</key>
+							<string>constant.language.event.quit</string>
+						</dict>
+					</dict>
 					<key>comment</key>
 					<string>Any custom/non-error quit message is emphasized</string>
-					<key>match</key>
-					<string>\bQuit\b</string>
+					<key>end</key>
+					<string>(\)$)</string>
+					<key>endCaptures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>comment</key>
+							<string>mark quit message, end</string>
+							<key>name</key>
+							<string>constant.language.event.quit</string>
+						</dict>
+					</dict>
 					<key>name</key>
-					<string>constant.language.event.quit</string>
+					<string>meta.string.other.quitmsg</string>
+				</dict>
+				<dict>
+					<key>begin</key>
+					<string>(\(\")</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>comment</key>
+							<string>mark part message, start</string>
+							<key>name</key>
+							<string>constant.language.event.quit</string>
+						</dict>
+					</dict>
+					<key>comment</key>
+					<string>Any custom/non-error part message is emphasized</string>
+					<key>end</key>
+					<string>(\"\)$)</string>
+					<key>endCaptures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>comment</key>
+							<string>mark part message, end</string>
+							<key>name</key>
+							<string>constant.language.event.quit</string>
+						</dict>
+					</dict>
+					<key>name</key>
+					<string>meta.string.other.partmsg</string>
 				</dict>
 				<dict>
 					<key>comment</key>
 					<string>Highlight kicks/bans</string>
 					<key>match</key>
-					<string>((\b(?i)(([kgz]|gz)-?lined?|ban(ned)?|kick(ed)?|shun(ned)?)\b)|\+b)</string>
+					<string>((\b(?i)(([kgz]|gz)-?lined?|ban(ned)?|kick(ed)?|kill(ed)?|shun(ned)?)\b)|\+b)</string>
 					<key>name</key>
 					<string>invalid.illegal.event</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#mirc-bold</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#mirc-italic</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#mirc-underline</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#mirc-reverse</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#mirc-reset</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#mirc-colors</string>
 				</dict>
 			</array>
 		</dict>
 	</array>
+	<key>repository</key>
+	<dict>
+		<key>mirc-bold</key>
+		<dict>
+			<key>comment</key>
+			<string>Code for italic text--(mIRC-style)</string>
+			<key>match</key>
+			<string>\([^(\|\|\|\|\|\\d?\d|$)]+)(\|\|\|\|\|\\d?\d|$)</string>
+			<key>name</key>
+			<string>markup.bold.irc_logs</string>
+		</dict>
+		<key>mirc-colors</key>
+		<dict>
+			<key>comment</key>
+			<string>Color codes--(mIRC-style)</string>
+			<key>match</key>
+			<string>\\d?\d</string>
+			<key>name</key>
+			<string>support.function.colors.mirc</string>
+		</dict>
+		<key>mirc-italic</key>
+		<dict>
+			<key>comment</key>
+			<string>Code for italic text--(mIRC-style)</string>
+			<key>match</key>
+			<string>\([^(\|\|\|\|\|\\d?\d|$)]+)(\|\|\|\|\|\\d?\d|$)</string>
+			<key>name</key>
+			<string>markup.italic.irc_logs</string>
+		</dict>
+		<key>mirc-reset</key>
+		<dict>
+			<key>comment</key>
+			<string>Reset all formatting--(mIRC-style)</string>
+			<key>match</key>
+			<string>\</string>
+			<key>name</key>
+			<string>markup.other.resetformat.irc_logs</string>
+		</dict>
+		<key>mirc-reverse</key>
+		<dict>
+			<key>comment</key>
+			<string>Code for swapping background and foreground colors ("reverse video")--(mIRC-style)</string>
+			<key>match</key>
+			<string>\([^(\|\|\|\|\|\\d?\d|$)]+)(\|\|\|\|\|\\d?\d|$)</string>
+			<key>name</key>
+			<string>markup.other.reverse.irc_logs</string>
+		</dict>
+		<key>mirc-underline</key>
+		<dict>
+			<key>comment</key>
+			<string>Code for underlined text--(mIRC-style)</string>
+			<key>match</key>
+			<string>\([^(\|\|\|\|\|\\d?\d|$)]+)(\|\|\|\|\|\\d?\d|$)</string>
+			<key>name</key>
+			<string>markup.underline.irc_logs</string>
+		</dict>
+	</dict>
 	<key>scopeName</key>
 	<string>text.plain.energymech</string>
 	<key>uuid</key>
