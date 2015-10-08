@@ -344,27 +344,27 @@
 			<key>comment</key>
 			<string>Code for italic text--(mIRC-style)</string>
 			<key>match</key>
-			<string>\([^(\|\|\|\|\|\\d?\d|$)]+)(\|\|\|\|\|\\d?\d|$)</string>
+			<string>\([^(\|\|\|\|\|\|$)]+)(\|\|\|\|\|\|$)</string>
 			<key>name</key>
-			<string>markup.bold.irc_logs</string>
+			<string>markup.bold.irc_logs.mirc</string>
 		</dict>
 		<key>mirc-colors</key>
 		<dict>
 			<key>comment</key>
 			<string>Color codes--(mIRC-style)</string>
 			<key>match</key>
-			<string>\\d?\d</string>
+			<string>\\d?\d(,\d?\d)?</string>
 			<key>name</key>
-			<string>support.function.colors.mirc</string>
+			<string>support.function.colors.irc_logs.mirc</string>
 		</dict>
 		<key>mirc-italic</key>
 		<dict>
 			<key>comment</key>
 			<string>Code for italic text--(mIRC-style)</string>
 			<key>match</key>
-			<string>\([^(\|\|\|\|\|\\d?\d|$)]+)(\|\|\|\|\|\\d?\d|$)</string>
+			<string>\([^(\|\|\|\|\|\|$)]+)(\|\|\|\|\|\|$)</string>
 			<key>name</key>
-			<string>markup.italic.irc_logs</string>
+			<string>markup.italic.irc_logs.mirc</string>
 		</dict>
 		<key>mirc-reset</key>
 		<dict>
@@ -373,25 +373,25 @@
 			<key>match</key>
 			<string>\</string>
 			<key>name</key>
-			<string>markup.other.resetformat.irc_logs</string>
+			<string>markup.other.resetformat.irc_logs.mirc</string>
 		</dict>
 		<key>mirc-reverse</key>
 		<dict>
 			<key>comment</key>
 			<string>Code for swapping background and foreground colors ("reverse video")--(mIRC-style)</string>
 			<key>match</key>
-			<string>\([^(\|\|\|\|\|\\d?\d|$)]+)(\|\|\|\|\|\\d?\d|$)</string>
+			<string>\([^(\|\|\|\|\|\|$)]+)(\|\|\|\|\|\|$)</string>
 			<key>name</key>
-			<string>markup.other.reverse.irc_logs</string>
+			<string>markup.other.reverse.irc_logs.mirc</string>
 		</dict>
 		<key>mirc-underline</key>
 		<dict>
 			<key>comment</key>
 			<string>Code for underlined text--(mIRC-style)</string>
 			<key>match</key>
-			<string>\([^(\|\|\|\|\|\\d?\d|$)]+)(\|\|\|\|\|\\d?\d|$)</string>
+			<string>\([^(\|\|\|\|\|\|$)]+)(\|\|\|\|\|\|$)</string>
 			<key>name</key>
-			<string>markup.underline.irc_logs</string>
+			<string>markup.underline.irc_logs.mirc</string>
 		</dict>
 	</dict>
 	<key>scopeName</key>
