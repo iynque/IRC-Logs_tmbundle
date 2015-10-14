@@ -271,6 +271,17 @@
 					</dict>
 					<key>name</key>
 					<string>meta.string.other.quitmsg</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>comment</key>
+							<string>Highlight kicks/bans</string>
+							<key>match</key>
+							<string>((\b(?i)(([kgz]|gz)-?lined?|ban(ned)?|kick(ed)?|kill(ed)?|shun(ned)?)\b)|\+b)</string>
+							<key>name</key>
+							<string>invalid.illegal.event</string>
+						</dict>
+					</array>
 				</dict>
 				<dict>
 					<key>begin</key>
@@ -301,14 +312,6 @@
 					</dict>
 					<key>name</key>
 					<string>meta.string.other.partmsg</string>
-				</dict>
-				<dict>
-					<key>comment</key>
-					<string>Highlight kicks/bans</string>
-					<key>match</key>
-					<string>((\b(?i)(([kgz]|gz)-?lined?|ban(ned)?|kick(ed)?|kill(ed)?|shun(ned)?)\b)|\+b)</string>
-					<key>name</key>
-					<string>invalid.illegal.event</string>
 				</dict>
 				<dict>
 					<key>include</key>
